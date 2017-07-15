@@ -71,9 +71,11 @@ preferenceApp.controller('preferenceController', function($scope, $http) {
         }, 500);
     }
     $scope.updateTime = function() {
+        $scope.updateData();
         var url = 'http://tutorin-ghci.rhcloud.com/post/tutor/' + $scope.user._id + '/availability';
         $http.post(url, $scope.dateList).then(function(response) {
             console.log('success');
+            window.location = '/index.html';
         });
     }
 });
