@@ -41,7 +41,7 @@
     <script src="form.js"></script>
 </head>
 
-<body ng-app="formApp" ng-controller="formController" class="skin-green-light  sidebar-collapse">
+<body ng-app="formApp" ng-controller="formController" class="skin-green-light layout-top-nav sidebar-collapse">
     <!-- Main Header -->
     <header class="main-header">
         <nav class="navbar navbar-static-top">
@@ -60,7 +60,7 @@
                     <!-- The user image in the navbar-->
                     <img src="{{user.pictureUrl}}" class="user-image" alt="User Image">
                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                    <span class="hidden-xs">{{user.firstname}} {{user.lastName}}</span>
+                    <span class="hidden-xs">{{user.firstName}} {{user.lastName}}</span>
                   </a>
                   <ul class="dropdown-menu">
                     <!-- The user image in the menu -->
@@ -73,7 +73,7 @@
                     <!-- Menu Footer-->
                     <li class="user-footer">
                       <div class="pull-left">
-                        <a href="/login/index.html" class="btn btn-default btn-flat">Profile</a>
+                        <a href="/profile/index.html" class="btn btn-default btn-flat">Profile</a>
                       </div>
                       <div class="pull-right">
                         <a ng-click="logout()" class="btn btn-default btn-flat">Sign out</a>
