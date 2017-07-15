@@ -16,7 +16,12 @@ formApp.controller('formController', ['$scope', '$http', 'socialLoginService', f
     	delete $scope.user._id;
         $http.post('http://tutorin-ghci.rhcloud.com/post/user/' + id, $scope.user).then(function(response) {
         	$scope.user._id = id;
-        	window.localStorage.setItem('coachInUser', JSON.stringify($scope.user));
+            window.localStorage.setItem('coachInUser', JSON.stringify($scope.user));
+            if ($scope.user.exists == true) {
+                window.location = '/index.html';
+            } else {
+                window.location = '/preference/index.html';
+            }
         });
     }
 }]);
