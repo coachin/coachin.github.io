@@ -39,21 +39,47 @@ socialLogin.factory("socialLoginService", ['$window', '$rootScope',
 	}
 }]);
 
-socialLogin.directive("linkedIn", ['$rootScope', 'social', 'socialLoginService', '$window',
-	function($rootScope, social, socialLoginService, $window){
+socialLogin.directive("linkedIn", ['$rootScope', 'social', 'socialLoginService', '$window', '$http',
+	function($rootScope, social, socialLoginService, $window, $http) {
 	return {
 		restrict: 'EA',
 		scope: {},
-		link: function(scope, ele, attr){
-		    ele.on("click", function(){
-		  		IN.User.authorize(function(){
-					IN.API.Raw("/people/~:(id,first-name,last-name,email-address,picture-url)").result(function(res){
+		link: function(scope, ele, attr) {
+		    ele.on("click", function() {
+		    	$rootScope.errorMessage = false;
+
+		  		IN.User.authorize(function() {
+					IN.API.Profile('me').fields(["id","email-address","picture-url","first-name","last-name","headline","industry","location","summary","public-profile-url"]).result((res) => { 
 						socialLoginService.setProvider("linkedIn");
-						var userDetails = {name: res.firstName + " " + res.lastName, email: res.emailAddress, uid: res.id, provider: "linkedIN", imageUrl: res.pictureUrl};
-						$rootScope.$broadcast('event:social-sign-in-success', userDetails);
-				    });
+
+						res = res.values[0];
+
+						var userDetails = {
+							firstName: res.firstName,
+							lastName: res.lastName, 
+							email: res.emailAddress,
+							uid: res.id, 
+							provider: "linkedIN", 
+							pictureUrl: res.pictureUrl,
+							resumeUrl: res.publicprofileUrl,
+							isTutor: false
+						};
+						$http.post('https://tutorin-ghci.rhcloud.com/post/user', userDetails).then(({ data: user }) => {
+							$window.localStorage.setItem('coachIn', JSON.stringify(user));
+							
+							if (user.exists) {
+								window.location = "/index.html";
+							} else {
+								window.location = "/profile/index.html";
+							}
+							
+						}, (err) => {
+							console.log(err.message);
+							$rootScope.errorMessage = "There was an error. Please check your login information."
+						});
+					});
 				});
-			})
+			});
 		}
 	}
 }])
