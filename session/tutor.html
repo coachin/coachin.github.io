@@ -55,7 +55,7 @@
 
     <script type="text/javascript">
         Appacitive.initialize({ 
-          apikey: "{rPntDlXHGtzYQ2JEot+Bxit14lW9A/Qw7+BrTJ5bPdo=",// The master or client api key for your app on appacitive.
+          apikey: "BLxhEd/FqqG3mkJRo+zFwi1B9C618FXI0+1X/8GPhRQ=",// The master or client api key for your app on appacitive.
           env: "sandbox",      // The environment that you are targetting (sandbox or live).
           appId: "{appId}"     // The app id for your app on appacitive. 
         });
@@ -152,8 +152,8 @@
                                       <td>{{session.startTime}} - {{session.endTime}}</td>
                                       <td ng-if="session.accepted">Yes</td>
                                       <td ng-if="!session.accepted && session.status == 'pending'">
-                                          <button ng-click="changeSession(session, true)" class="btn btn-xs btn-success" style="">Accept</button>
-                                          <button ng-click="changeSession(session, false)" class="btn btn-xs btn-danger">Decline</button>
+                                          <button ng-click="changeSession(session, true)" class="btn btn-xs btn-success" style="margin : 5px;">Accept</button>
+                                          <button ng-click="changeSession(session, false)" class="btn btn-xs btn-danger" style="margin : 5px;">Decline</button>
                                       </td>
                                       <td ng-if="!session.accepted && session.status != 'pending'">Rejected</td>
                                     </tr>

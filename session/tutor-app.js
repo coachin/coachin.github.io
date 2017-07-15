@@ -17,7 +17,18 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
         delete session._id;
     	$http.post(`http://tutorin-ghci.rhcloud.com/post/session/${id}`, session).then(() => {
     		$scope.sessionSuccess = true;
-    		setTimeout(() => {
+    		var email = {
+                to: [session.tutee_email], /* a string array containing the recipient email addresses */
+                from: "chiragsanghvi24", /* email id of user */
+                subject: accepted ? "Tutoring request approved" : "Tutoring request rejected" , /* string containing the subject of the email */
+                templateName: accepted ? "session_approve" : "session_reject", /*name of template to be send */
+                data: session, /*an object with placeholder names and their data eg: {username:"test"} */
+                useConfig: false/* set true to use configure settings in email module in SDK*/
+            };
+
+            $scope.session = true;
+            Appacitive.Email.sendTemplatedEmail(email);
+            setTimeout(() => {
 	    		$scope.sessionSuccess = false;
 	    	}, 1000);
     	});

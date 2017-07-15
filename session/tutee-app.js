@@ -69,12 +69,13 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
     		createdAt: (new Date()).getTime(),
     		category: $scope.categories.find((c) => $scope.selectedCategory == c._id).name,
     		tutor_email: tutor.email,
+    		tutee_email: $scope.user.email,
     		tutor_id: tutor._id,
     		tutee_id: $scope.user._id,
     		tutorFirstName: tutor.firstName,
     		tutorLastName: tutor.lastName,
     		tuteeFirstName: $scope.user.firstName,
-    		tuteLastName: $scope.user.lastName
+    		tuteeLastName: $scope.user.lastName
     	};
 
     	$http.post(`http://tutorin-ghci.rhcloud.com/post/session`, session).then(() => {
