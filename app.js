@@ -1,6 +1,6 @@
-var app = angular.module('chaseIn', ['socialLogin']);
+var app = angular.module('coachIn', ['socialLogin']);
 
-app.controller('chaseInController', ['$scope', '$http', 'socialLoginService', function($scope, $http, socialLoginService) {
+app.controller('coachInController', ['$scope', '$http', 'socialLoginService', function($scope, $http, socialLoginService) {
 	var user = window.localStorage.getItem('coachInUser');
 	if (!user) {
 		window.location = "/login/index.html";
