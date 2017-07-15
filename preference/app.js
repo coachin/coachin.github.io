@@ -9,6 +9,7 @@ preferenceApp.controller('preferenceController', function($scope, $http) {
     });
     $scope.selected = [];
     $scope.dateList = [{}];
+    $scope.saved = false;
     $scope.days = [
         {
             name: 'Sunday',
@@ -58,6 +59,7 @@ preferenceApp.controller('preferenceController', function($scope, $http) {
             url = url + 'tutee/' + $scope.user._id + '/pref';
         }
         $http.post(url, $scope.selected).then(function(response){
+            $scope.saved = true;
            //window.location('') Redirect
            console.log('success');
         });
@@ -74,6 +76,7 @@ preferenceApp.controller('preferenceController', function($scope, $http) {
         $scope.updateData();
         var url = 'http://tutorin-ghci.rhcloud.com/post/tutor/' + $scope.user._id + '/availability';
         $http.post(url, $scope.dateList).then(function(response) {
+            $scope.saved = true;
             console.log('success');
             window.location = '/index.html';
         });

@@ -93,83 +93,89 @@
         </nav>
     </header>
     <div class="content-wrapper">
-        <section class="content">
-            <div class="col-md-6 col-md-offset-3 panel-body">
-                <div class="box box-primary">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <div class="box-header with-border">
-                            <section class="content-header" style="padding-left:0">
-                                <h1>
-                                    Preferences
-                                    <small>Set your preferenced areas</small>
-                                </h1>
-                                </section>
-                            </div>
-                            <div class="box-body col-md-6">
-                                <select class="form-control select2 select2-container select2-container--default" multiple="multiple" data-placeholder="Select prefered areas" ng-model="selected" id="select2">
-                                    <option ng-repeat="category in categories" ng-value=category._id>{{category.name}}</option>
-                                </select>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible col-md-6 col-md-offset-3" ng-show="saved" style="margin-top: 20px;">
+                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                Preferences updated successfully.
+            </div>
+            <section class="content">
+                <div class="col-md-6 col-md-offset-3 panel-body">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="box-header with-border">
+                                <section class="content-header" style="padding-left:0">
+                                    <h1>
+                                        Preferences
+                                        <small>Set your preferenced areas</small>
+                                    </h1>
+                                    </section>
+                                </div>
+                                <div class="box-body col-md-6">
+                                    <select class="form-control select2 select2-container select2-container--default" multiple="multiple" data-placeholder="Select prefered areas" ng-model="selected" id="select2">
+                                        <option ng-repeat="category in categories" ng-value=category._id>{{category.name}}</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-md-offset-3 panel-body">
-                <div class="box box-primary">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <div class="box-header with-border">
-                            <section class="content-header" style="padding-left:0">
-                                <h1>
-                                    Preferenced Time
-                                    <small>Set your preferenced days and time</small>
-                                </h1>
-                                </section>
-                            </div>
-                            <div class="box-body col-md-12" ng-repeat="obj in dateList">
-                                <div class="col-md-6">
-                                    <lable for="days">DAY</lable>
-                                    <select class="form-control" data-placeholder="Select prefered days" ng-model="obj.day" name="days">
-                                        <option ng-repeat="day in days" ng-value=day._id>{{day.name}}</option>
-                                    </select>
-                                    <lable for="start-date">Start Time</lable>
-                                    <div class="bootstrap-timepicker">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control timepicker" ng-model="obj.startTime">
-                                            <div class="input-group-addon">
-                                            <i class="fa fa-clock-o"></i>
+                <div class="col-md-6 col-md-offset-3 panel-body">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="box-header with-border">
+                                <section class="content-header" style="padding-left:0">
+                                    <h1>
+                                        Preferenced Time
+                                        <small>Set your preferenced days and time</small>
+                                    </h1>
+                                    </section>
+                                </div>
+                                <div class="box-body col-md-12" ng-repeat="obj in dateList">
+                                    <div class="col-md-6">
+                                        <lable for="days">DAY</lable>
+                                        <select class="form-control" data-placeholder="Select prefered days" ng-model="obj.day" name="days">
+                                            <option ng-repeat="day in days" ng-value=day._id>{{day.name}}</option>
+                                        </select>
+                                        <lable for="start-date">Start Time</lable>
+                                        <div class="bootstrap-timepicker">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control timepicker" ng-model="obj.startTime">
+                                                <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <lable for="start-date">End Time</lable>
-                                    <div class="bootstrap-timepicker">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control timepicker" ng-model="obj.endTime">
-                                            <div class="input-group-addon">
-                                            <i class="fa fa-clock-o"></i>
+                                        <lable for="start-date">End Time</lable>
+                                        <div class="bootstrap-timepicker">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control timepicker" ng-model="obj.endTime">
+                                                <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <label for="cost"> Charge </label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" ng-model="obj.cost" name="cost"/>
-                                            <div class="input-group-addon">
-                                                $ / 20mins
-                                            </div> 
+                                        <label for="cost"> Charge </label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" ng-model="obj.cost" name="cost"/>
+                                                <div class="input-group-addon">
+                                                    $ / 20mins
+                                                </div> 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="box-body col-md-12">
-                                <button type="button" class="btn btn-primary" ng-click="addDay();" style="margin-top:10px;">Add another slot</button>
-                                <button type="submit" class="btn btn-primary" ng-click="updateTime();" style="margin-top:10px;">Save Changes</button>
+                                <div class="box-body col-md-12">
+                                    <button type="button" class="btn btn-primary" ng-click="addDay();" style="margin-top:10px;">Add another slot</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="updateTime();" style="margin-top:10px;">Save Changes</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 </body>
 <script>
