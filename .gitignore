@@ -10,9 +10,7 @@
 .idea/
 ehthumbs.db
 Thumbs.db
-bower_components
 node_modules
-dist
 jsdoc
 .make-*
 sftp-config.json
