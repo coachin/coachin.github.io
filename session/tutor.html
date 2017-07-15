@@ -107,7 +107,7 @@
         <div class="container">
             <div class="alert alert-success alert-dismissible" ng-show="sessionSuccess" style="margin-top: 20px;">
                 <h4><i class="icon fa fa-check"></i> Success!</h4>
-                Session changed successfully. Redirecting to home page
+                Session changed successfully.
             </div>
 
             <!-- Content Header (Page header) -->
@@ -141,7 +141,7 @@
                                       <td>{{session.startTime}} - {{session.endTime}}</td>
                                       <td ng-if="session.accepted">Yes</td>
                                       <td ng-if="!session.accepted && session.status == 'pending'">
-                                          <button ng-click="changeSession(session, true)" class="btn btn-xs btn-success">Accept</button>
+                                          <button ng-click="changeSession(session, true)" class="btn btn-xs btn-success" style="">Accept</button>
                                           <button ng-click="changeSession(session, false)" class="btn btn-xs btn-danger">Decline</button>
                                       </td>
                                       <td ng-if="!session.accepted && session.status != 'pending'">Rejected</td>

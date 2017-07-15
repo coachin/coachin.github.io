@@ -46,7 +46,7 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
     		var data = response.data;
     		$scope.tutors = [];
     		data.forEach((t)=> {
-    			if (t.__id != $scope.user._id) {
+    			if (t._id != $scope.user._id) {
 	    			t.availability.tutor.forEach((a) => {
 	    				if (a.day != $scope.selectedDay) return;
 	    				a.start = "12:30 PM";
@@ -87,7 +87,7 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
 
    	var fetchSessions = () => {
    		$scope.sessions = null;
-   		$http.get(`http://tutorin-ghci.rhcloud.com/get/tutee/${$scope.user._id}/sessions?status=pending`).then(function(response) {
+   		$http.get(`http://tutorin-ghci.rhcloud.com/get/tutee/${$scope.user._id}/sessions`).then(function(response) {
 	        $scope.sessions = response.data;
 	    });
    	}
