@@ -7,7 +7,8 @@ formApp.controller('formController', ['$scope', '$http', 'socialLoginService', f
     	return;
     }
     $scope.user = JSON.parse(user);
-    
+    $scope.user = $scope.user ? $scope.user : {};
+    $scope.user.isTutor = !!$scope.user.isTutor;
     $scope.logout = socialLoginService.logout;
 
     $scope.updateData =  function() {
