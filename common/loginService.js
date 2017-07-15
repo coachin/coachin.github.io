@@ -65,7 +65,7 @@ socialLogin.directive("linkedIn", ['$rootScope', 'social', 'socialLoginService',
 							isTutor: false
 						};
 						$http.post('https://tutorin-ghci.rhcloud.com/post/user', userDetails).then(({ data: user }) => {
-							$window.localStorage.setItem('coachIn', JSON.stringify(user));
+							$window.localStorage.setItem('coachInUser', JSON.stringify(user));
 							
 							if (user.exists) {
 								window.location = "/index.html";
