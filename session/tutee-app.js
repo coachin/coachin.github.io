@@ -12,7 +12,7 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
 
     $scope.selectedCategory = null, $scope.selectedDay = null;
 
-    $http.get('http://tutorin-ghci.rhcloud.com/get/categories').then(function(response){
+    $http.get('https://tutorin-ghci.rhcloud.com/get/categories').then(function(response){
         $scope.categories = response.data;
     });
 
@@ -42,7 +42,7 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
     $('.select2').select2();
 
     $scope.searchTutors = function() {
-    	$http.get(`http://tutorin-ghci.rhcloud.com/get/tutors?pref=${$scope.selectedCategory}&day=${$scope.selectedDay}`).then((response) => {
+    	$http.get(`https://tutorin-ghci.rhcloud.com/get/tutors?pref=${$scope.selectedCategory}&day=${$scope.selectedDay}`).then((response) => {
     		var data = response.data;
     		$scope.tutors = [];
     		data.forEach((t)=> {
@@ -78,7 +78,7 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
     		tuteeLastName: $scope.user.lastName
     	};
 
-    	$http.post(`http://tutorin-ghci.rhcloud.com/post/session`, session).then(() => {
+    	$http.post(`https://tutorin-ghci.rhcloud.com/post/session`, session).then(() => {
     		$('body').scrollTop(0);
     		$scope.tutors = null;
     		$scope.selectedDay = null;
@@ -101,7 +101,7 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
 
    	var fetchSessions = () => {
    		$scope.sessions = null;
-   		$http.get(`http://tutorin-ghci.rhcloud.com/get/tutee/${$scope.user._id}/sessions`).then(function(response) {
+   		$http.get(`https://tutorin-ghci.rhcloud.com/get/tutee/${$scope.user._id}/sessions`).then(function(response) {
 	        $scope.sessions = response.data.reverse();
 	    });
    	}

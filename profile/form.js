@@ -16,7 +16,7 @@ formApp.controller('formController', ['$scope', '$http', 'socialLoginService', f
         delete $scope.user._id;
         var exists = $scope.user.exists;
         $scope.user.exists = true;
-        $http.post('http://tutorin-ghci.rhcloud.com/post/user/' + id, $scope.user).then(function(response) {
+        $http.post('https://tutorin-ghci.rhcloud.com/post/user/' + id, $scope.user).then(function(response) {
         	$scope.user._id = id;
             window.localStorage.setItem('coachInUser', JSON.stringify($scope.user));
             if (exists == true || !$scope.user.isTutor) {

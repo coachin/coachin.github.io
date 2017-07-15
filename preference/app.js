@@ -1,7 +1,7 @@
 var preferenceApp = angular.module('preferenceApp', []);
 preferenceApp.controller('preferenceController', function($scope, $http) {
     $scope.user = JSON.parse(window.localStorage.getItem('coachInUser'));
-    $http.get('http://tutorin-ghci.rhcloud.com/get/categories').then(function(response){
+    $http.get('https://tutorin-ghci.rhcloud.com/get/categories').then(function(response){
         $scope.categories = response.data;
         $('.timepicker').timepicker({
             showInputs: false
@@ -40,7 +40,7 @@ preferenceApp.controller('preferenceController', function($scope, $http) {
             _id: 6
         }
     ];
-    var url = 'http://tutorin-ghci.rhcloud.com/get/';
+    var url = 'https://tutorin-ghci.rhcloud.com/get/';
     if ($scope.user.isTutor) {
         url = url + 'tutor/' + $scope.user._id + '/pref';
     } else {
@@ -52,7 +52,7 @@ preferenceApp.controller('preferenceController', function($scope, $http) {
     });
     
     $scope.updateData =  function() {
-        var url = 'http://tutorin-ghci.rhcloud.com/post/';
+        var url = 'https://tutorin-ghci.rhcloud.com/post/';
         if ($scope.user.isTutor) {
             url = url + 'tutor/' + $scope.user._id + '/pref';
         } else {
@@ -74,7 +74,7 @@ preferenceApp.controller('preferenceController', function($scope, $http) {
     }
     $scope.updateTime = function() {
         $scope.updateData();
-        var url = 'http://tutorin-ghci.rhcloud.com/post/tutor/' + $scope.user._id + '/availability';
+        var url = 'https://tutorin-ghci.rhcloud.com/post/tutor/' + $scope.user._id + '/availability';
         $http.post(url, $scope.dateList).then(function(response) {
             $scope.saved = true;
             console.log('success');

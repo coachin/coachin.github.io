@@ -15,7 +15,7 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
         session.status = "completed";
         var id = session._id;
         delete session._id;
-    	$http.post(`http://tutorin-ghci.rhcloud.com/post/session/${id}`, session).then(() => {
+    	$http.post(`https://tutorin-ghci.rhcloud.com/post/session/${id}`, session).then(() => {
     		$scope.sessionSuccess = true;
     		var email = {
                 to: [session.tutee_email], /* a string array containing the recipient email addresses */
@@ -35,7 +35,7 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
     };
 
     $scope.sessions = null;
-   	$http.get(`http://tutorin-ghci.rhcloud.com/get/tutor/${$scope.user._id}/sessions`).then(function(response) {
+   	$http.get(`https://tutorin-ghci.rhcloud.com/get/tutor/${$scope.user._id}/sessions`).then(function(response) {
         $scope.sessions = response.data.reverse();
     });
 }]);
