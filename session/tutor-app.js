@@ -25,6 +25,6 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
 
     $scope.sessions = null;
    	$http.get(`http://tutorin-ghci.rhcloud.com/get/tutor/${$scope.user._id}/sessions`).then(function(response) {
-        $scope.sessions = response.data;
+        $scope.sessions = response.data.reverse();
     });
 }]);

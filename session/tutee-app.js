@@ -67,6 +67,8 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
     		status: 'pending',
     		accepted: false,
     		createdAt: (new Date()).getTime(),
+    		category: $scope.categories.find((c) => $scope.selectedCategory == c._id).name,
+    		tutor_email: tutor.email,
     		tutor_id: tutor._id,
     		tutee_id: $scope.user._id,
     		tutorFirstName: tutor.firstName,
@@ -76,19 +78,30 @@ app.controller('coachInController', ['$scope', '$http', 'socialLoginService', fu
     	};
 
     	$http.post(`http://tutorin-ghci.rhcloud.com/post/session`, session).then(() => {
-    		$scope.session = true;
     		$('body').scrollTop(0);
     		$scope.tutors = null;
     		$scope.selectedDay = null;
     		$scope.selectedCategory = null;
-    		fetchSessions();
+    		
+    		var email = {
+			    to: [session.tutor_email], /* a string array containing the recipient email addresses */
+			    from: "chiragsanghvi24", /* email id of user */
+			    subject: "Lecture request", /* string containing the subject of the email */
+			    templateName: "session_tutor_request", /*name of template to be send */
+			    data: session, /*an object with placeholder names and their data eg: {username:"test"} */
+			    useConfig: false/* set true to use configure settings in email module in SDK*/
+			};
+
+			$scope.session = true;
+			Appacitive.Email.sendTemplatedEmail(email);
+			fetchSessions();
     	});
     };
 
    	var fetchSessions = () => {
    		$scope.sessions = null;
    		$http.get(`http://tutorin-ghci.rhcloud.com/get/tutee/${$scope.user._id}/sessions`).then(function(response) {
-	        $scope.sessions = response.data;
+	        $scope.sessions = response.data.reverse();
 	    });
    	}
 

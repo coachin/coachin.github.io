@@ -51,6 +51,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
     <script src="/common/loginService.js" type="text/javascript"></script>
     <script src="tutor-app.js"></script>
+    <script src="//cdn.appacitive.com/sdk/js/appacitive-js-sdk-v1.0.10.min.js"></script>
+
+    <script type="text/javascript">
+        Appacitive.initialize({ 
+          apikey: "{rPntDlXHGtzYQ2JEot+Bxit14lW9A/Qw7+BrTJ5bPdo=",// The master or client api key for your app on appacitive.
+          env: "sandbox",      // The environment that you are targetting (sandbox or live).
+          appId: "{appId}"     // The app id for your app on appacitive. 
+        });
+    </script>
 </head>
 
 <body ng-app="coachIn" ng-controller="coachInController" class="skin-green-light layout-top-nav sidebar-collapse">
@@ -130,6 +139,7 @@
                                     <tr>
                                       <th style="width: 10px">#</th>
                                       <th>Tutor Info</th>
+                                      <th>Category</th>
                                       <th>Day</th>
                                       <th>Timing</th>
                                       <th>Status</th>
@@ -137,6 +147,7 @@
                                     <tr ng-repeat="session in sessions">
                                       <td>{{$index + 1}}.</td>
                                       <td>{{session.tuteeFirstName}} {{session.tuteeLastName}}</td>
+                                      <td>{{session.category}}</td>
                                       <td>{{session.day}}</td>
                                       <td>{{session.startTime}} - {{session.endTime}}</td>
                                       <td ng-if="session.accepted">Yes</td>
