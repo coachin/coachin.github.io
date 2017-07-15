@@ -55,7 +55,7 @@
             <div class="navbar-header">
               <a href="/index.html" class="navbar-brand">Coach<b>IN</b></a>
             </div>
-
+            <div class="collapse navbar-collapse pull-left" id="navbar-collapse"></div>
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
               <ul class="nav navbar-nav">
@@ -101,6 +101,7 @@
           <h1>
             Profile Information
             <small>This information will be rendered on your profile</small>
+            <a href="../preference/index.html" class="btn btn-primary pull-right" ng-show="user.isTutor">Edit Preferences</a>
           </h1>
         </section>
 
@@ -148,7 +149,6 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
-                            <a href="../preference/index.html" class="btn btn-primary" ng-show="user.isTutor" style="margin-top:10px;">Edit preference</a>
                         </div>
                     </div>
                 </div>
