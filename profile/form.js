@@ -1,5 +1,6 @@
-var formApp = angular.module('formApp', []);
-formApp.controller('formController', function($scope, $http) {
+var formApp = angular.module('formApp', ['socialLogin']);
+
+formApp.controller('formController', ['$scope', '$http', 'socialLoginService', function($scope, $http, socialLoginService) {
 	var user = window.localStorage.getItem('coachInUser');
     if (!user) {
     	window.location = "/login/index.html";
@@ -7,6 +8,8 @@ formApp.controller('formController', function($scope, $http) {
     }
     $scope.user = JSON.parse(user);
     
+    $scope.logout = socialLoginService.logout;
+
     $scope.updateData =  function() {
     	var id = $scope.user._id;
     	delete $scope.user._id;
@@ -15,4 +18,4 @@ formApp.controller('formController', function($scope, $http) {
         	window.localStorage.setItem('coachInUser', JSON.stringify($scope.user));
         });
     }
-});
+}]);

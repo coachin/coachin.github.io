@@ -25,13 +25,9 @@ socialLogin.provider("social", function(){
 socialLogin.factory("socialLoginService", ['$window', '$rootScope',
 	function($window, $rootScope){
 	return {
-		logout: function(){
-			var provider = $window.localStorage.getItem('_login_provider');
-			
-			IN.User.logout(function(){
-				$window.localStorage.removeItem('_login_provider');
-			 	$rootScope.$broadcast('event:social-sign-out-success', "success");
-			}, {});
+		logout: function() {
+			$window.localStorage.removeItem('coachInUser');
+		 	$window.location = "/login/index.html";
 		},
 		setProvider: function(provider){
 			$window.localStorage.setItem('_login_provider', provider);
