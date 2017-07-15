@@ -14,11 +14,6 @@ bower_components
 node_modules
 dist
 jsdoc
-deployment-config.json
 .make-*
-index.html
-/chaise-config.js
 sftp-config.json
 npm-debug.log
-version.txt
-test/e2e/specs/recordedit/uploadFiles/*.*
